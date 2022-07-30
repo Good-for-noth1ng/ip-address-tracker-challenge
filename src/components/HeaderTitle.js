@@ -3,9 +3,10 @@ import styled from 'styled-components'
 
 
 const Title = styled.div`
-    font-size: 1.4rem;
+    font-size: 23px;
     font-weight: 700;
     color: white;
+    margin: 2.25rem 0 0 0;
 `;
 
 function HeaderTitle() {

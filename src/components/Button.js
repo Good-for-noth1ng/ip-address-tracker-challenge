@@ -13,9 +13,18 @@ const SearchButton = styled.button`
   border-bottom-right-radius: 20px;
   transition: opacity 250ms ease-in-out;
   background-color: hsl(0, 0%, 17%);
+  
+  @media (max-width: 355px) {
+        
+  }
+
   &:hover {
     cursor: pointer;
     opacity: 0.85;
+  }
+
+  &:active {
+    opacity: 0.5;
   }
 `;
 

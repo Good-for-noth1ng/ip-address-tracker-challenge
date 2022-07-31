@@ -26,7 +26,7 @@ const InputField = styled.input`
     flex: 8;
     padding: 0;
     height: inherit;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 700;
     border: 0;
     border-bottom-left-radius: 20px;

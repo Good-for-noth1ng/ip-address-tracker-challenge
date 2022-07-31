@@ -1,5 +1,6 @@
 import Header from "./components/Header";
 import { createGlobalStyle } from "styled-components";
+import InfoBox from "./components/InfoBox";
 
 const BodyContainerStyle = createGlobalStyle`
   body {
@@ -19,6 +20,7 @@ function App() {
     <div className="App">
       <BodyContainerStyle/>
       <Header />
+      <InfoBox />
     </div>
   );
 }

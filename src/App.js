@@ -16,6 +16,7 @@ const BodyContainerStyle = createGlobalStyle`
 `
 
 function App() {
+  
   return (
     <div className="App">
       <BodyContainerStyle/>

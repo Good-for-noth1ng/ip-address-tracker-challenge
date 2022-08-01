@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import styled from 'styled-components'
 import InfoBoxRecord from './InfoBoxRecord';
+import IPIFY_API_KEY from '../env.json';
 
 const InfoContainer = styled.div`
     position: absolute;
@@ -10,33 +11,61 @@ const InfoContainer = styled.div`
     top: 12.5rem;
     left: 10.5%;
     right: 10.5%;
-    padding: 28px 2rem;
+    padding: 28px 16px;
     justify-content: space-between;
     background-color: #f7f4f4;
     border-radius: 20px;
+
+    @media (max-width: 895px) {
+        left: 6.4%;
+        right: 6.4%;
+    }
 `;
-const example = [
-    {
-        recordHeader: 'header',
-        recordInfo: 'info about provide'
-    },
-    {
-        recordHeader: 'header',
-        recordInfo: 'info about provide'
-    },
-    {
-        recordHeader: 'header',
-        recordInfo: 'info about provide'
-    },
-    {
-        recordHeader: 'header',
-        recordInfo: 'info about provide'
-    },
-]
+
 function InfoBox() {
-  return (
+    const [data, setData] = useState({
+        ip: "",
+        location: {
+            country: "",
+            region: "",
+            timezone: "",
+        },
+        domains: [],
+        as: {
+            asn: 0,
+            name: "",
+            route: "",
+            domain: "",
+            type: ""
+        },
+        isp: ""
+    }); 
+
+    useLayoutEffect(() => {
+        const url = `https://geo.ipify.org/api/v2/country?apiKey=${IPIFY_API_KEY.IPIFY_API_KEY}`;
+        fetch(url)
+            .then((response) => response.json())
+            .then((fetchedData) => {
+                setData((data) => { 
+                    return {
+                        ...data, 
+                        ip: fetchedData.ip,
+                        location: {
+                            region: fetchedData.location.region,
+                            timezone: fetchedData.location.timezone
+                        },
+                        isp: fetchedData.isp 
+                    }})
+            })
+            .catch((error) => console.log(error));
+    }, []);
+
+    return (
     <InfoContainer>
-        {example.map((data) => <InfoBoxRecord data={data}/>)}
+        <InfoBoxRecord header={'IP ADDRESS'} info={data.ip}/>
+        <InfoBoxRecord header={'LOCATION'} info={data.location.region}/>
+        <InfoBoxRecord header={'TIMEZONE'} info={data.location.timezone}/>
+        <InfoBoxRecord header={'ISP'} info={data.isp}/>
     </InfoContainer>
   )
 }

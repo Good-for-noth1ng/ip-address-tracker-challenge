@@ -55,11 +55,15 @@ const InputField = styled.input`
 `;
 
 function Input() {    
+    const handleSearch = () => {
+        console.log('click')
+    }
+
     return ( 
     <InputContainer>
         <InputField placeholder='Search for any IP addres or domain'>
         </InputField>
-        <SearchButton>
+        <SearchButton handleSeacrh={handleSearch}>
         </SearchButton>
     </InputContainer>
   )

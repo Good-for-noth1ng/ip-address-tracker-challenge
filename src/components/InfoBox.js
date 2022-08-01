@@ -23,15 +23,41 @@ const InfoContainer = styled.div`
 `;
 
 function InfoBox() {
-    const [data, setData] = useState([]); 
+    const [data, setData] = useState({
+        ip: "",
+        location: {
+            country: "",
+            region: "",
+            timezone: "",
+        },
+        domains: [],
+        as: {
+            asn: 0,
+            name: "",
+            route: "",
+            domain: "",
+            type: ""
+        },
+        isp: ""
+    }); 
+
+
 
     useLayoutEffect(() => {
         const url = `https://geo.ipify.org/api/v2/country?apiKey=${IPIFY_API_KEY.IPIFY_API_KEY}`;
         fetch(url)
             .then((response) => response.json())
             .then((fetchedData) => {
-                setData(fetchedData)
-                console.log(fetchedData)
+                setData((data) => { 
+                    return {
+                        ...data, 
+                        ip: fetchedData.ip,
+                        location: {
+                            region: fetchedData.location.region,
+                            timezone: fetchedData.location.timezone
+                        },
+                        isp: fetchedData.isp 
+                    }})
             })
             .catch((error) => console.log(error));
     }, []);

@@ -1,7 +1,8 @@
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useLayoutEffect } from 'react'
 import styled from 'styled-components'
 import InfoBoxRecord from './InfoBoxRecord';
-import IPIFY_API_KEY from '../env.json';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchInitData } from '../redux/dataSlice';
 
 const InfoContainer = styled.div`
     position: absolute;
@@ -9,66 +10,42 @@ const InfoContainer = styled.div`
     width: 78%;
     height: 10rem;
     top: 12.5rem;
-    left: 10.5%;
-    right: 10.5%;
     padding: 28px 16px;
     justify-content: space-between;
     background-color: #f7f4f4;
     border-radius: 20px;
 
-    @media (max-width: 895px) {
-        left: 6.4%;
-        right: 6.4%;
+    @media (max-width: 620px) {
+        width: 67%;
+        height: 3.625rem;
     }
+     @media (max-width: 355px) {
+        flex-direction: column;
+     }
+`;
+
+const WrapperContainer = styled.div`
+    display: flex;
+    justify-content: center;
 `;
 
 function InfoBox() {
-    const [data, setData] = useState({
-        ip: "",
-        location: {
-            country: "",
-            region: "",
-            timezone: "",
-        },
-        domains: [],
-        as: {
-            asn: 0,
-            name: "",
-            route: "",
-            domain: "",
-            type: ""
-        },
-        isp: ""
-    }); 
-
-
-
+    
+    const dispatch = useDispatch();
     useLayoutEffect(() => {
-        const url = `https://geo.ipify.org/api/v2/country?apiKey=${IPIFY_API_KEY.IPIFY_API_KEY}`;
-        fetch(url)
-            .then((response) => response.json())
-            .then((fetchedData) => {
-                setData((data) => { 
-                    return {
-                        ...data, 
-                        ip: fetchedData.ip,
-                        location: {
-                            region: fetchedData.location.region,
-                            timezone: fetchedData.location.timezone
-                        },
-                        isp: fetchedData.isp 
-                    }})
-            })
-            .catch((error) => console.log(error));
+        dispatch(fetchInitData())    
     }, []);
-
+    const data = useSelector(state => state.data.data)
+    
     return (
-    <InfoContainer>
-        <InfoBoxRecord header={'IP ADDRESS'} info={data.ip}/>
-        <InfoBoxRecord header={'LOCATION'} info={data.location.region}/>
-        <InfoBoxRecord header={'TIMEZONE'} info={data.location.timezone}/>
-        <InfoBoxRecord header={'ISP'} info={data.isp}/>
-    </InfoContainer>
+    <WrapperContainer>    
+        <InfoContainer>
+            <InfoBoxRecord header={'IP ADDRESS'} info={data.ip}/>
+            <InfoBoxRecord header={'LOCATION'} info={data.location.region}/>
+            <InfoBoxRecord header={'TIMEZONE'} info={data.location.timezone}/>
+            <InfoBoxRecord header={'ISP'} info={data.isp}/>
+        </InfoContainer>
+    </WrapperContainer>
   )
 }
 

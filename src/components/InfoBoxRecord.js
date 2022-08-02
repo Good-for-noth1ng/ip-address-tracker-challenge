@@ -24,6 +24,10 @@ const RecordHeader = styled.div`
     @media (max-width: 895px) {
         font-size: 15px;   
     }
+
+    @media (max-width: 620px) {
+        font-size: 12px
+    }
 `;
 
 const RecordInfo = styled.div`
@@ -34,6 +38,10 @@ const RecordInfo = styled.div`
     
     @media (max-width: 895px) {
         font-size: 20px;
+    }
+
+    @media (max-width: 620px) {
+        font-size: 15px
     }
 `;
 

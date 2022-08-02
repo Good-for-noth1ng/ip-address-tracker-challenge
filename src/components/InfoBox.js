@@ -22,6 +22,8 @@ const InfoContainer = styled.div`
      @media (max-width: 455px) {
         flex-direction: column;
         height: 35vh;
+        justify-content: center;
+        align-items: center;
      }
 `;
 

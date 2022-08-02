@@ -15,6 +15,11 @@ const Record = styled.div`
         margin: 0 5px;
         padding: 0 5px;
     }
+
+    @media (max-width: 455px) {
+        justify-content: center;
+        align-items: center;
+    }
 `;
 
 const RecordHeader = styled.div`
@@ -31,7 +36,7 @@ const RecordHeader = styled.div`
     }
 
     @media (max-width: 455px) {
-        font-size: 12px;
+        font-size: 18px;
         margin: 5px;
     }
 `;

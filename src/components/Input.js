@@ -35,7 +35,7 @@ const InputField = styled.input`
     border-top-left-radius: 20px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    padding: 0 1.5rem 0 1.5rem;
+    padding: 0 0 0 1.5rem;
 
     @media (max-width: 620px) {
       flex: 4.5;
@@ -45,7 +45,8 @@ const InputField = styled.input`
     } 
 
     @media (max-width: 620px) {
-        font-size: 9px;
+        font-size: 12px;
+        padding: 0 0 0 0.7rem;
     } 
     
     &:focus {

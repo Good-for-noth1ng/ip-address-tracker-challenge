@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components'
+import { fetchByIp, fetchByDomain } from '../redux/dataSlice';
 import SearchButton from './Button'
 
 const InputContainer = styled.div`
@@ -55,15 +57,26 @@ const InputField = styled.input`
 `;
 
 function Input() {    
-    const handleSearch = () => {
-        console.log('click')
+    const [query, setQuery] = useState('')
+    const dispatch = useDispatch()
+    const submit = () => {
+        const regexIp = '/^[0-2][0-9][0-9].[0-2][0-9][0-9].[0-2][0-9][0-9].[0-2][0-9][0-9]$/g';
+        if(query.match(regexIp) === query) {
+            dispatch(fetchByIp(query))
+        } else {
+            dispatch(fetchByDomain(query))
+        }
+        
     }
-
+    const handleSearch = (event) => {
+        event.preventDefault()
+        setQuery(event.target.value); 
+    }
     return ( 
     <InputContainer>
-        <InputField placeholder='Search for any IP addres or domain'>
+        <InputField placeholder='Search for any IP addres or domain' onChange={ (event) => handleSearch(event)}>
         </InputField>
-        <SearchButton handleSeacrh={handleSearch}>
+        <SearchButton submit={submit}>
         </SearchButton>
     </InputContainer>
   )

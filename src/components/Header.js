@@ -12,7 +12,7 @@ const HeaderContainer = styled.div`
     flex-direction: column;
     align-items: center;
     @media (max-width: 620px) {
-      height: 18.75rem;
+      height: 15.75rem;
     }
 `;
 

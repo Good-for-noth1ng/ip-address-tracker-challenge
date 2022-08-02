@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const Record = styled.div`
     display: flex;
@@ -26,7 +27,12 @@ const RecordHeader = styled.div`
     }
 
     @media (max-width: 620px) {
-        font-size: 12px
+        font-size: 10px
+    }
+
+    @media (max-width: 455px) {
+        font-size: 12px;
+        margin: 5px;
     }
 `;
 
@@ -41,7 +47,13 @@ const RecordInfo = styled.div`
     }
 
     @media (max-width: 620px) {
-        font-size: 15px
+        font-size: 12px;
+        margin: 0;
+    }
+
+    @media (max-width: 455px) {
+        font-size: 15px;
+        margin: 5px;
     }
 `;
 
@@ -49,10 +61,10 @@ function InfoBoxRecord({header, info}) {
   return (
     <Record>
         <RecordHeader>
-            {header ? header : 'UNKNOWN'}
+            {header}
         </RecordHeader>
         <RecordInfo>
-            {info ? info : 'UNKNOWN'} 
+            {info ? info : (<ClipLoader color="rgb(62 112 188)"/>)} 
         </RecordInfo>
     </Record>
   )

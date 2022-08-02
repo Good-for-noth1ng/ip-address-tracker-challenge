@@ -17,10 +17,11 @@ const InfoContainer = styled.div`
 
     @media (max-width: 620px) {
         width: 67%;
-        height: 3.625rem;
+        height: 6rem;
     }
-     @media (max-width: 355px) {
+     @media (max-width: 455px) {
         flex-direction: column;
+        height: 35vh;
      }
 `;
 

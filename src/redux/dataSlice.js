@@ -11,6 +11,24 @@ export const fetchInitData = createAsyncThunk(
     }
 )
 
+export const fetchByIp = createAsyncThunk(
+    'data/fetchByIp',
+    async (ipAddress) => {
+        const url = `https://geo.ipify.org/api/v2/country?apiKey=${IPIFY_API_KEY.IPIFY_API_KEY}&ipAddress=${ipAddress}`;
+        return fetch(url)
+            .then((response) => response.json())
+    }
+)
+
+export const fetchByDomain = createAsyncThunk(
+    'data/fetchByDomain',
+    async (domain) => {
+        const url = `https://geo.ipify.org/api/v2/country?apiKey=${IPIFY_API_KEY.IPIFY_API_KEY}&domain=${domain}`;
+        return fetch(url)
+            .then((response) => response.json())
+    }
+)
+
 export const dataSlice = createSlice({
     name: 'data',
     initialState: {
@@ -50,6 +68,28 @@ export const dataSlice = createSlice({
         builder.addCase(fetchInitData.rejected, (state, action) => {
             state.loading = false
             state.error = action.error.message
+        })
+        builder.addCase(fetchByIp.fulfilled, (state, action) => {
+            state.loading = false
+            state.data = action.payload
+        })
+        builder.addCase(fetchByIp.rejected, (state, action) => {
+            state.loading = false
+            state.error = action.error.message
+        })
+        builder.addCase(fetchByIp.pending, (state) => {
+            state.loading = true
+        })
+        builder.addCase(fetchByDomain.fulfilled, (state, action) => {
+            state.loading = false
+            state.data = action.payload
+        })
+        builder.addCase(fetchByDomain.rejected, (state, action) => {
+            state.loading = false
+            state.error = action.error.message
+        })
+        builder.addCase(fetchByDomain.pending, (state) => {
+            state.loading = true
         })
     }
 })

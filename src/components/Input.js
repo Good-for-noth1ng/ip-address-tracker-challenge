@@ -49,6 +49,10 @@ const InputField = styled.input`
         padding: 0 0 0 0.7rem;
     } 
     
+    @media (max-width: 312px) {
+        font-size: 9px;
+    }
+
     &:focus {
         outline: none;
     }

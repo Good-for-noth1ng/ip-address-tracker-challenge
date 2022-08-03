@@ -36,7 +36,7 @@ const RecordHeader = styled.div`
     }
 
     @media (max-width: 455px) {
-        font-size: 18px;
+        font-size: 14px;
         margin: 5px;
     }
 `;
@@ -57,19 +57,20 @@ const RecordInfo = styled.div`
     }
 
     @media (max-width: 455px) {
-        font-size: 15px;
+        font-size: 14px;
         margin: 5px;
     }
 `;
 
-function InfoBoxRecord({header, info}) {
+function InfoBoxRecord({header, info, additionalInfo}) {
   return (
     <Record>
         <RecordHeader>
             {header}
         </RecordHeader>
         <RecordInfo>
-            {info ? info : (<ClipLoader color="rgb(62 112 188)"/>)} 
+            {info ? (info) : (<ClipLoader color="rgb(62 112 188)" size={20}/>)}
+            {additionalInfo ? `, ${additionalInfo}` : ''} 
         </RecordInfo>
     </Record>
   )

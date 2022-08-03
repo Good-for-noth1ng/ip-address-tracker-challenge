@@ -44,7 +44,7 @@ function InfoBox() {
     <WrapperContainer>    
         <InfoContainer>
             <InfoBoxRecord header={'IP ADDRESS'} info={data.ip}/>
-            <InfoBoxRecord header={'LOCATION'} info={data.location.region}/>
+            <InfoBoxRecord header={'LOCATION'} info={data.location.region} additionalInfo={data.location.city}/>
             <InfoBoxRecord header={'TIMEZONE'} info={data.location.timezone}/>
             <InfoBoxRecord header={'ISP'} info={data.isp}/>
         </InfoContainer>

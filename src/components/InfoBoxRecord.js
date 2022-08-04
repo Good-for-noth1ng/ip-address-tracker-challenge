@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import ClipLoader from 'react-spinners/ClipLoader';
+
 
 const Record = styled.div`
     display: flex;
@@ -62,14 +62,14 @@ const RecordInfo = styled.div`
     }
 `;
 
-function InfoBoxRecord({header, info, additionalInfo, loading, error}) {
+function InfoBoxRecord({header, info, additionalInfo}) {
   return (
     <Record>
         <RecordHeader>
             {header}
         </RecordHeader>
         <RecordInfo>
-            {info ? (info) : (<ClipLoader color="rgb(62 112 188)" size={20}/>)}
+            {info}
             {additionalInfo ? `, ${additionalInfo}` : ''} 
         </RecordInfo>
     </Record>

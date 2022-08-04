@@ -8,7 +8,7 @@ function Map({longitude, latitude}) {
     const map = useRef(null)
     const [lng, setLng] = useState(longitude)
     const [lat, setLat] = useState(latitude)
-    const [zoom, setZoom] = useState(9)
+    const [zoom, setZoom] = useState(10)
     
     useEffect(() => {
         if (map.current) return;
@@ -29,7 +29,7 @@ function Map({longitude, latitude}) {
         });
     })
     return (
-        <div ref={mapContainer} style={{ height: '65vh' }}/>
+        <div ref={mapContainer} style={{ height: '100vh' }}/>
     )
 }
 

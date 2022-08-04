@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import InfoBoxRecord from './InfoBoxRecord';
 import { useSelector } from 'react-redux';
-
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const InfoContainer = styled.div`
     position: absolute;
@@ -33,22 +33,32 @@ const WrapperContainer = styled.div`
     justify-content: center;
 `;
 
+const SpinnerContainer = styled.div`
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    `;
+
 function InfoBox() {
-    const data = useSelector(state => state.data.data)
     
-    useEffect(() => {
-        if (!data.loading) {
-            return
-        }    
-    }, [data])
+    const data = useSelector(state => state.data)
 
     return (
-    <WrapperContainer>    
-        <InfoContainer>
-            <InfoBoxRecord header={'IP ADDRESS'} info={data.ip}/>
-            <InfoBoxRecord header={'LOCATION'} info={data.location.region} additionalInfo={data.location.city}/>
-            <InfoBoxRecord header={'TIMEZONE'} info={data.location.timezone}/>
-            <InfoBoxRecord header={'ISP'} info={data.isp}/>
+    <WrapperContainer>
+        <InfoContainer >    
+            {data.loading ? 
+                <SpinnerContainer>
+                    <ClipLoader color="rgb(62 112 188)" size={20}/>
+                </SpinnerContainer> : (
+                <>
+                    <InfoBoxRecord header={'IP ADDRESS'} info={data.data.ip}/>
+                    <InfoBoxRecord header={'LOCATION'} info={data.data.location.region} additionalInfo={data.data.location.city}/>
+                    <InfoBoxRecord header={'TIMEZONE'} info={data.data.location.timezone}/>
+                    <InfoBoxRecord header={'ISP'} info={data.data.isp}/>
+                </>
+            )}
         </InfoContainer>
     </WrapperContainer>
   )

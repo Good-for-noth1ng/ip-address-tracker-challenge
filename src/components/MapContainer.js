@@ -1,21 +1,17 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import Map from './Map'
-import { ClipLoader } from 'react-spinners'
-
 
 function MapContainer() {
-    const data = useSelector(state => state.data)
     
-    useEffect(() => {
-        if (!data.loading) {
-            return
-        }    
-    }, [data])
+    const data = useSelector(state => state.data)
     
     return (
         <div>
-            {data.loading ? <ClipLoader /> : <Map longitude={data.data.location.lng} latitude={data.data.location.lat}/>}            
+            {data.loading ?
+                '' : 
+            <Map longitude={data.data.location.lng} latitude={data.data.location.lat}/>
+            }            
         </div>
     )
 }

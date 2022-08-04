@@ -13,6 +13,7 @@ const BodyContainerStyle = createGlobalStyle`
     padding: 0;
     scroll-behavior: smooth;
     font-family: 'Rubik', sans-serif;
+    overflow-y: hidden;
   }
   html {
     font-size: 100%;

@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import { createGlobalStyle } from "styled-components";
 import InfoBox from "./components/InfoBox";
 import 'mapbox-gl/dist/mapbox-gl.css'; 
-import Map from "./components/Map";
+import MapContainer from "./components/MapContainer";
 import { useDispatch } from "react-redux";
 import { fetchInitData } from './redux/dataSlice';
 
@@ -33,7 +33,7 @@ function App() {
       <BodyContainerStyle/>
       <Header />
       <InfoBox />
-      <Map />
+      <MapContainer />
     </div>
   );
 }

@@ -1,11 +1,12 @@
-import React, { useLayoutEffect } from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import InfoBoxRecord from './InfoBoxRecord';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchInitData } from '../redux/dataSlice';
+import { useSelector } from 'react-redux';
+
 
 const InfoContainer = styled.div`
     position: absolute;
+    z-index: 1;
     display: flex;
     width: 78%;
     height: 10rem;
@@ -33,13 +34,14 @@ const WrapperContainer = styled.div`
 `;
 
 function InfoBox() {
-    
-    const dispatch = useDispatch();
-    useLayoutEffect(() => {
-        dispatch(fetchInitData())    
-    }, []);
     const data = useSelector(state => state.data.data)
     
+    useEffect(() => {
+        if (!data.loading) {
+            return
+        }    
+    }, [data])
+
     return (
     <WrapperContainer>    
         <InfoContainer>

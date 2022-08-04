@@ -62,7 +62,7 @@ const RecordInfo = styled.div`
     }
 `;
 
-function InfoBoxRecord({header, info, additionalInfo}) {
+function InfoBoxRecord({header, info, additionalInfo, loading, error}) {
   return (
     <Record>
         <RecordHeader>

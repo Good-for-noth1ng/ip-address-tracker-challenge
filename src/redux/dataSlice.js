@@ -6,8 +6,8 @@ export const fetchInitData = createAsyncThunk(
     'data/fetchInitData',
     async () => {
         const url = `https://geo.ipify.org/api/v2/country,city?apiKey=${IPIFY_API_KEY.IPIFY_API_KEY}`;
-        return fetch(url)
-            .then((response) => response.json())
+        let response = await fetch(url)
+        return response.json()
     }
 )
 
@@ -15,8 +15,8 @@ export const fetchByIp = createAsyncThunk(
     'data/fetchByIp',
     async (ipAddress) => {
         const url = `https://geo.ipify.org/api/v2/country,city?apiKey=${IPIFY_API_KEY.IPIFY_API_KEY}&ipAddress=${ipAddress}`;
-        return fetch(url)
-            .then((response) => response.json())
+        let response = await fetch(url)
+        return response.json()
     }
 )
 
@@ -24,8 +24,8 @@ export const fetchByDomain = createAsyncThunk(
     'data/fetchByDomain',
     async (domain) => {
         const url = `https://geo.ipify.org/api/v2/country,city?apiKey=${IPIFY_API_KEY.IPIFY_API_KEY}&domain=${domain}`;
-        return fetch(url)
-            .then((response) => response.json())
+        let response = await fetch(url)
+        return response.json()
     }
 )
 

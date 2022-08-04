@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import Header from "./components/Header";
 import { createGlobalStyle } from "styled-components";
 import InfoBox from "./components/InfoBox";
+import 'mapbox-gl/dist/mapbox-gl.css'; 
+import Map from "./components/Map";
+import { useDispatch } from "react-redux";
+import { fetchInitData } from './redux/dataSlice';
 
 const BodyContainerStyle = createGlobalStyle`
   body {
@@ -18,11 +22,18 @@ const BodyContainerStyle = createGlobalStyle`
 
 function App() {
   
+  const dispatch = useDispatch()
+  
+  useLayoutEffect(() => {
+    dispatch(fetchInitData());
+  }, [])
+
   return (
     <div className="App">
       <BodyContainerStyle/>
       <Header />
       <InfoBox />
+      <Map />
     </div>
   );
 }

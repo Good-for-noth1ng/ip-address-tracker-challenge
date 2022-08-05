@@ -71,12 +71,13 @@ function Input() {
         } else {
             dispatch(fetchByDomain(query))
         }
-        
     }
+
     const handleSearch = (event) => {
         event.preventDefault()
         setQuery(event.target.value); 
     }
+    
     return ( 
     <InputContainer>
         <InputField placeholder='Search for any IP addres or domain' onChange={ (event) => handleSearch(event)}>

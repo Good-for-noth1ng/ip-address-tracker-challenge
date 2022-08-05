@@ -30,7 +30,7 @@ export const fetchByDomain = createAsyncThunk(
 )
 
 export const dataSlice = createSlice({
-    name: 'data',
+    name: 'ipInfo',
     initialState: {
         data: {
             ip: "",

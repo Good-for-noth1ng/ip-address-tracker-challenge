@@ -4,13 +4,14 @@ import Map from './Map'
 
 function MapContainer() {
     
-    const data = useSelector(state => state.data)
+    const ipInfo = useSelector(state => state.ipInfo)
     
     return (
         <div>
-            {data.loading ?
-                '' : 
-            <Map longitude={data.data.location.lng} latitude={data.data.location.lat}/>
+            {
+                ipInfo.loading ?
+                    '' : 
+                <Map longitude={ipInfo.data.location.lng} latitude={ipInfo.data.location.lat}/>
             }            
         </div>
     )

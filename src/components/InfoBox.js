@@ -43,20 +43,21 @@ const SpinnerContainer = styled.div`
 
 function InfoBox() {
     
-    const data = useSelector(state => state.data)
+    const ipInfo = useSelector(state => state.ipInfo)
+    console.log(ipInfo)
 
     return (
     <WrapperContainer>
         <InfoContainer >    
-            {data.loading ? 
+            {ipInfo.loading ? 
                 <SpinnerContainer>
                     <ClipLoader color="rgb(62 112 188)" size={20}/>
                 </SpinnerContainer> : (
                 <>
-                    <InfoBoxRecord header={'IP ADDRESS'} info={data.data.ip}/>
-                    <InfoBoxRecord header={'LOCATION'} info={data.data.location.region} additionalInfo={data.data.location.city}/>
-                    <InfoBoxRecord header={'TIMEZONE'} info={data.data.location.timezone}/>
-                    <InfoBoxRecord header={'ISP'} info={data.data.isp}/>
+                    <InfoBoxRecord header={'IP ADDRESS'} info={ipInfo.data.ip}/>
+                    <InfoBoxRecord header={'LOCATION'} info={ipInfo.data.location.region} additionalInfo={ipInfo.data.location.city}/>
+                    <InfoBoxRecord header={'TIMEZONE'} info={ipInfo.data.location.timezone}/>
+                    <InfoBoxRecord header={'ISP'} info={ipInfo.data.isp}/>
                 </>
             )}
         </InfoContainer>

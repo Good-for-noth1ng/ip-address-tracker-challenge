@@ -55,13 +55,22 @@ export const dataSlice = createSlice({
             isp: ""
         },
         loading: false,
-        error: ''
+        error: '',
+        zoom: 10
     },
+
     reducers: {
-        setData: (state, action) => {
-            state.data = action.payload
+        setLat: (state, action) => {
+            state.data.location.lat = action.payload
+        },
+        setLng: (state, action) => {
+            state.data.location.lng = action.payload
+        },
+        setZoom: (state, action) => {
+            state.zoom = action.payload
         }
     },
+
     extraReducers: (builder) => {
         builder.addCase(fetchInitData.pending, (state) => {
             state.loading = true
@@ -99,6 +108,6 @@ export const dataSlice = createSlice({
     }
 })
 
-export const { setData } = dataSlice.actions;
+export const { setLat, setLng, setZoom } = dataSlice.actions;
  
 export default dataSlice.reducer;

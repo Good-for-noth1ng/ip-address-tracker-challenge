@@ -1,14 +1,18 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import { MAPBOX_API_TOKEN } from '../env.json'
-mapboxgl.accessToken = MAPBOX_API_TOKEN
+import { setZoom, setLat, setLng } from '../redux/dataSlice'
+import { useSelector, useDispatch } from 'react-redux'
 
-function Map({longitude, latitude}) {
+mapboxgl.accessToken = MAPBOX_API_TOKEN 
+
+function Map() {
     const mapContainer = useRef(null)
     const map = useRef(null)
-    const [lng, setLng] = useState(longitude)
-    const [lat, setLat] = useState(latitude)
-    const [zoom, setZoom] = useState(10)
+    const dispatch = useDispatch()
+    const lng = useSelector(state => state.ipInfo.data.location.lng)
+    const lat = useSelector(state => state.ipInfo.data.location.lat)
+    const zoom = useSelector(state => state.ipInfo.zoom)
     
     useEffect(() => {
         if (map.current) return;
@@ -23,9 +27,9 @@ function Map({longitude, latitude}) {
     useEffect(() => {
         if (!map.current) return;
         map.current.on('move', () => {
-            setLng(map.current.getCenter().lng.toFixed(4));
-            setLat(map.current.getCenter().lat.toFixed(4));
-            setZoom(map.current.getZoom().toFixed(2));
+            dispatch(setLng(map.current.getCenter().lng.toFixed(4)));
+            dispatch(setLat(map.current.getCenter().lat.toFixed(4)));
+            dispatch(setZoom(map.current.getZoom().toFixed(2)));
         });
     })
     return (

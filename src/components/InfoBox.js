@@ -39,7 +39,9 @@ const SpinnerContainer = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
-    `;
+`;
+
+const ErrorContainer = styled.div``;
 
 function InfoBox() {
     
@@ -52,14 +54,19 @@ function InfoBox() {
             {ipInfo.loading ? 
                 <SpinnerContainer>
                     <ClipLoader color="rgb(62 112 188)" size={20}/>
-                </SpinnerContainer> : (
+                </SpinnerContainer> : 
+                ipInfo.error ? 
+                    <ErrorContainer>
+                        {ipInfo.error}
+                    </ErrorContainer> 
+                :
                 <>
                     <InfoBoxRecord header={'IP ADDRESS'} info={ipInfo.data.ip}/>
                     <InfoBoxRecord header={'LOCATION'} info={ipInfo.data.location.region} additionalInfo={ipInfo.data.location.city}/>
                     <InfoBoxRecord header={'TIMEZONE'} info={ipInfo.data.location.timezone}/>
                     <InfoBoxRecord header={'ISP'} info={ipInfo.data.isp}/>
                 </>
-            )}
+            }
         </InfoContainer>
     </WrapperContainer>
   )

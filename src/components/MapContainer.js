@@ -9,10 +9,7 @@ function MapContainer() {
     return (
         <div>
             {
-                ipInfo.loading ?
-                    '' : 
-                // <Map longitude={ipInfo.data.location.lng} latitude={ipInfo.data.location.lat}/>
-                <Map />
+                ipInfo.loading ? '' : <Map />
             }            
         </div>
     )

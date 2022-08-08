@@ -89,6 +89,7 @@ export const dataSlice = createSlice({
                 state.error = action.payload.messages
             } else {
                 state.data = action.payload
+                state.error = ""
             }
         })
         builder.addCase(fetchByIp.rejected, (state, action) => {
@@ -104,6 +105,7 @@ export const dataSlice = createSlice({
                 state.error = action.payload.messages
             } else {
                 state.data = action.payload
+                state.error = ""
             } 
         })
         builder.addCase(fetchByDomain.rejected, (state, action) => {

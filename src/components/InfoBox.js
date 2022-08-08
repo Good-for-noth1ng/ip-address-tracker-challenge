@@ -12,7 +12,7 @@ const InfoContainer = styled.div`
     height: 10rem;
     top: 12.5rem;
     padding: 28px 16px;
-    justify-content: space-between;
+    justify-content: center;
     background-color: #f7f4f4;
     border-radius: 20px;
 
@@ -41,12 +41,24 @@ const SpinnerContainer = styled.div`
         align-items: center;
 `;
 
-const ErrorContainer = styled.div``;
+const ErrorContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 500;
+    @media(max-width: 620px) {
+        font-size: 18px;
+    }
+
+    @media(max-width: 455px) {
+        font-size: 15px;
+    }
+`;
 
 function InfoBox() {
     
     const ipInfo = useSelector(state => state.ipInfo)
-    console.log(ipInfo)
 
     return (
     <WrapperContainer>
